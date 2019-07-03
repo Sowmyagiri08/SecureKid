@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<body >
+
+<p>Click the button to get your coordinates.</p>
+
+<button onclick="getLocation()" >Try It</button>
+<form name="myForm" id="myForm" action="http://localhost:5000/login" method = "POST">
+<input name="lon" type="text" id="lon"></input>
+<input name="lat" type="text" id="lat"></input>
+<input type="submit" value="submit"/>
+</form>
+<script>
+
+window.onload=function(){
+getLocation()
+
+        //function submitform(){
+          
+        //}
+    }
+
+var x = document.getElementById("demo");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+  var latlon = position.coords.latitude + "," + position.coords.longitude;
+   document.getElementById('lat').value=position.coords.latitude;
+document.getElementById('lon').value=position.coords.longitude;
+//alert(latlon);
+//alert(document.getElementById("lat").value);
+
+document.forms["myForm"].submit();
+
+  //var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x300&sensor=false&key=AIzaSyCoI3YKAJMSqhX5X081ZDMVni5-lo0JgkQ";
+
+}
+
+</script>
+
+</body>
+</html>
